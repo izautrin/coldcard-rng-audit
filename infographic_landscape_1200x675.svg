@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#131c30"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffb020"/>
+      <stop offset="1" stop-color="#ff7a18"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="url(#amber)"/>
+
+  <text x="60" y="80" fill="#8ea0c0" font-size="21" letter-spacing="5">INDEPENDENT ON-CHAIN FORENSIC AUDIT</text>
+  <text x="60" y="134" fill="#ffffff" font-size="48" font-weight="700">Coldcard RNG Vulnerability</text>
+  <text x="60" y="172" fill="#8ea0c0" font-size="22">Hardware TRNG disabled in seed generation — keys became brute-forceable</text>
+
+  <!-- left: NET (top) + PERIMETER (bottom), both prominent with BTC -->
+  <rect x="60" y="200" width="520" height="342" rx="18" fill="#0e1526" stroke="#24314e"/>
+  <text x="88" y="244" fill="#8ea0c0" font-size="21" letter-spacing="1">NET STOLEN · actual loss</text>
+  <text x="84" y="314" fill="#ffffff" font-size="66" font-weight="800">~$399M</text>
+  <text x="88" y="352" fill="#8ea0c0" font-size="26" font-weight="700">~5,080 BTC</text>
+
+  <line x1="88" y1="374" x2="552" y2="374" stroke="#24314e" stroke-width="2"/>
+
+  <text x="88" y="416" fill="#8ea0c0" font-size="21" letter-spacing="1">PERIMETER · volume through keys</text>
+  <text x="84" y="486" fill="url(#amber)" font-size="66" font-weight="800">~$861M</text>
+  <text x="88" y="524" fill="#ffffff" font-size="26" font-weight="700">10,949.73 BTC</text>
+
+  <!-- right: stat grid -->
+  <g font-weight="800" fill="#ffffff">
+    <rect x="610" y="200" width="530" height="100" rx="14" fill="#0e1526" stroke="#24314e"/>
+    <text x="636" y="260" font-size="48">2,051</text>
+    <text x="860" y="246" font-size="20" fill="#8ea0c0" font-weight="500">recoverable</text>
+    <text x="860" y="274" font-size="20" fill="#8ea0c0" font-weight="500">wallet seeds</text>
+
+    <rect x="610" y="314" width="530" height="100" rx="14" fill="#0e1526" stroke="#24314e"/>
+    <text x="636" y="374" font-size="48">35,188</text>
+    <text x="860" y="360" font-size="20" fill="#8ea0c0" font-weight="500">victim addresses</text>
+    <text x="860" y="388" font-size="20" fill="#8ea0c0" font-weight="500">— all drained</text>
+
+    <rect x="610" y="428" width="255" height="114" rx="14" fill="#0e1526" stroke="#24314e"/>
+    <text x="636" y="488" font-size="42">5+ yrs</text>
+    <text x="636" y="518" font-size="19" fill="#8ea0c0" font-weight="500">2021 → 2026</text>
+
+    <rect x="885" y="428" width="255" height="114" rx="14" fill="#0e1526" stroke="#24314e"/>
+    <text x="911" y="485" font-size="34">256→19 bit</text>
+    <text x="911" y="514" font-size="19" fill="#8ea0c0" font-weight="500">key entropy</text>
+  </g>
+
+  <!-- warning + footer -->
+  <text x="60" y="588" fill="#ffcf7a" font-size="22" font-weight="700">⚠ 27+ months of quiet exploitation before public disclosure</text>
+  <text x="60" y="622" fill="#6f7f9f" font-size="20">Fixed in firmware 4.2.0 / 5.6.0 · Independent research — not financial or legal advice</text>
+  <text x="60" y="652" fill="#8ea0c0" font-size="21" font-weight="700">Independent on-chain security research</text>
+</svg>
