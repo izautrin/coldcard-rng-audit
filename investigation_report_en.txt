@@ -6,11 +6,11 @@
                    removed; the full package is shared privately with LE/forensics
   Document type:   Forensic / Cryptographic Audit Report
   Version:         5.0 (forensic deep-dive: hub map, sweeper bot, haircut taint)
-  Date:            2026-08-26
-  BTC reference:   $78,619 / BTC (fixing at report date)
+  Date:            2026-09-06
+  BTC reference:   $79,902 / BTC (rate as of 2026-09-06)
   Analysis rounds: 76 (71 Mk3 + 5 Mk4 phase)
   v5 changes:      6.9 full hub map (11,683 Tier-1, output-side analysis);
-                   6.10 forward tracing + haircut taint ($229M parked / $78M to
+                   6.10 forward tracing + haircut taint ($233M parked / $79M to
                    exchanges) + targeted expansion (2 rounds); 6.11 ACTIVE
                    sweeper bot (last drain 2026-08-19); 4.7 Gap B —
                    0 new legacy/P2SH victims; recoverable population
@@ -97,7 +97,7 @@ WHAT IS NOT COVERED (fundamentally out of reach for our method):
     see 4.7.1.
 
 IMPLICATION FOR INTERPRETATION:
-  Net Stolen 5,080 BTC ($399M) is a PROVEN MINIMUM. The real damage may be higher
+  Net Stolen 5,080 BTC ($406M) is a PROVEN MINIMUM. The real damage may be higher
   due to the unreachable categories above. Gross 10,950 BTC is an upper bound on
   the volume that moved through the compromised keys (with change-cycling). For
   comparison with public reports, use Net (see 7A).
@@ -124,9 +124,9 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
     devices (theoretical ceiling ~2,070 seeds = 99%+ coverage);
   - identification of 35,189 unique Bitcoin addresses belonging to victims
     (all DRAINED, zero current balance);
-  - confirmation that 10,950.75 BTC (Gross, ~$861M) passed through the
+  - confirmation that 10,950.75 BTC (Gross, ~$875M) passed through the
     compromised keys;
-  - computation of the net stolen amount, 5,079.90 BTC (Net Stolen, ~$399M),
+  - computation of the net stolen amount, 5,079.90 BTC (Net Stolen, ~$406M),
     via full transaction-graph analysis (TX Graph, 100% coverage);
   - reconstruction of 202 drain waves over 5.3 years (July 2021 - August 2026);
   - verification of no cross-chain losses ($0 across 11 blockchains);
@@ -135,8 +135,8 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
   - confirmation of an ACTIVE sweeper bot (last sweep 2026-08-19, 460 same-block
     sweeps, 358 addresses with repeat cycles) — the attacker's infrastructure is
     NOT dismantled;
-  - haircut fund-tracing (5 hops, 3.8M edges): ~2,918 BTC ($229M) of stolen
-    funds is still PARKED on-chain (freezable), ~991 BTC ($78M) cashed out
+  - haircut fund-tracing (5 hops, 3.8M edges): ~2,918 BTC ($233M) of stolen
+    funds is still PARKED on-chain (freezable), ~991 BTC ($79M) cashed out
     through exchanges;
   - closing the Gap B ceiling: a legacy/P2SH scan (all-types bloom) produced 0
     confirmed new victims; the recoverable population is substantially exhausted
@@ -150,8 +150,8 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
   -------------------------------  --------------------------------------
   Seeds recovered                  2,052 (ceiling ~2,070 = 99%+ Mk3)
   Bitcoin addresses                35,189 (all DRAINED, 0 active)
-  Gross total_received             10,950.75 BTC (~$861M)
-  NET STOLEN (TX Graph)            5,079.90 BTC (~$399M)
+  Gross total_received             10,950.75 BTC (~$875M)
+  NET STOLEN (TX Graph)            5,079.90 BTC (~$406M)
     - Internal (change cycling)    5,869.83 BTC (53.6%)
     - External (real deposits)     5,076.71 BTC (46.4%)
     - Mixed-input                  3.19 BTC
@@ -159,8 +159,8 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
   Tier-1 consolidation hubs        11,683 (fan-in up to 1,118 victims per hub)
   Sweeper bot                      ACTIVE (last drain 2026-08-19; 460 same-
                                    block sweeps; 358 refund cycles)
-  PARKED (sitting on-chain)        2,917.83 BTC (~$229M, haircut, freezable)
-  Reached SERVICE (exchanges)      991.34 BTC (~$78M, subpoena)
+  PARKED (sitting on-chain)        2,917.83 BTC (~$233M, haircut, freezable)
+  Reached SERVICE (exchanges)      991.34 BTC (~$79M, subpoena)
   Gap B (legacy/P2SH ceiling)      0 new victims (9 hits = bloom FP)
   Drain waves                      202 over 5.3 years (Jul 2021 - Aug 2026)
   Cross-chain damage               $0 (11 chains, 123,060 addresses)
@@ -983,14 +983,14 @@ are the main source of previously unknown addresses (21.4% of all hits).
 4.3 Gross vs Net: TX Graph breakdown
 --------------------------------------------------------------------------------
 
-  Metric                           BTC              USD (@$78,619)
+  Metric                           BTC              USD (@$79,902)
   -------------------------------  ---------------  --------------
-  Gross total_received             10,950.75        $861M
+  Gross total_received             10,950.75        $875M
   Internal (change cycling)         5,869.83  (53.6%)
   External (real deposits)          5,076.71  (46.4%)
   Mixed-input (counted as external)     3.19
   --------------------------------------------------------------
-  NET STOLEN                        5,079.90         $399M
+  NET STOLEN                        5,079.90         $406M
 
   TX analyzed:          46,131
     internal:            9,159
@@ -1013,9 +1013,9 @@ transaction graph (100% coverage) and not subject to the "these are internal
 transfers" objection.
 
 Definitions for use in communication:
-  Gross Compromised Volume (10,950 BTC / $861M) — the total volume that passed
+  Gross Compromised Volume (10,950 BTC / $875M) — the total volume that passed
     through the compromised keys; shows the SCALE of the vulnerability's reach.
-  Net Stolen (5,080 BTC / $399M) — the ACTUAL damage; an incontestable metric.
+  Net Stolen (5,080 BTC / $406M) — the ACTUAL damage; an incontestable metric.
 
 The forecast (internal ratio would rise to 60-65% at 100% coverage) did not hold:
 actual internal was 53.6%, i.e. the net damage came out HIGHER than forecast.
@@ -1526,7 +1526,7 @@ exploitation was profitable even in the "slow bleeding" phase:
       years.
 
   BENEFIT:
-    - Gross perimeter 10,950 BTC, actually extracted (Net) 5,080 BTC (~$399M).
+    - Gross perimeter 10,950 BTC, actually extracted (Net) 5,080 BTC (~$406M).
     - Even the early bot alone moved 51.07 BTC (~$4M at the current rate) through a
       single large drain.
 
@@ -1624,14 +1624,14 @@ FINAL DISTRIBUTION (conservation: seeded 5,444.90 BTC ≈ Net Stolen 5,080):
  ┌───────────────────────────────────────────────┬──────────┬───────┐
  │ Bucket                                        │      BTC │   USD │
  ├───────────────────────────────────────────────┼──────────┼───────┤
- │ PARKED (stolen sitting on-chain, freezable)   │ 2,917.83 │ $229M │
- │ Reached SERVICE (cashed out to exchanges)     │   991.34 │  $78M │
+ │ PARKED (stolen sitting on-chain, freezable)   │ 2,917.83 │ $233M │
+ │ Reached SERVICE (cashed out to exchanges)     │   991.34 │  $79M │
  │ Unresolved (deep tail)                        │   797.26 │     — │
  │ Fees / loss (hop fees + BADADDR)              │   738.46 │     — │
  └───────────────────────────────────────────────┴──────────┴───────┘
 
-Interpretation for LE: ~$229M of stolen funds is STILL on identified addresses (a
-lower bound, subject to freezing), ~$78M cashed out through exchanges/services
+Interpretation for LE: ~$233M of stolen funds is STILL on identified addresses (a
+lower bound, subject to freezing), ~$79M cashed out through exchanges/services
 (subpoena the SERVICE endpoints). The haircut method is defensible as a conservative
 lower bound on parked funds.
 
@@ -1759,7 +1759,7 @@ the public analysts:
    attack waves. This defensive audit, via reverse-engineering the PRNG, recovered
    2,052 mnemonics, which made it possible to expose 5.3 years of hidden
    exploitation and 30,789 addresses invisible to public victim lists. Our Net
-   Stolen (5,080 BTC / $399M) is computed from the full transaction graph with 100%
+   Stolen (5,080 BTC / $406M) is computed from the full transaction graph with 100%
    coverage and represents a mathematically incontestable estimate of the actual
    damage."
 
@@ -1817,10 +1817,10 @@ with our data are reviewed separately:
      the bot's start date.
   5. Top-20 hubs + P2SH 2022 trace + graph of the first 3 waves — can be started
      immediately with 52.5% of the data, without waiting for full clustering.
-  6. FREEZE PARKED funds: haircut tracing (Section 6.10) isolates ~2,918 BTC ($229M)
+  6. FREEZE PARKED funds: haircut tracing (Section 6.10) isolates ~2,918 BTC ($233M)
      of stolen funds still sitting on identified addresses (parked_stolen_wallets.csv,
      1,333 addresses). A priority for seizure/freeze before cash-out. ~991 BTC
-     ($78M) already reached SERVICE endpoints (2,783 exchange/service addresses) —
+     ($79M) already reached SERVICE endpoints (2,783 exchange/service addresses) —
      subpoena this list.
   7. ACTIVE THREAT: the sweeper bot operates to this day. Law enforcement and
      exchanges are advised to warn users about the risk of new inflows to these
@@ -2071,7 +2071,7 @@ transactions with them; this report is strictly research and advisory in nature.
                               END OF REPORT
 --------------------------------------------------------------------------------
   76 analysis rounds (Mk3 + Mk4 firmware audit). 2,052 seeds. 35,189 addresses.
-  Gross 10,950 BTC ($861M). Net Stolen 5,080 BTC ($399M).
+  Gross 10,950 BTC ($875M). Net Stolen 5,080 BTC ($406M).
   Up to 5.3 years of hidden exploitation (early bot confirmed from 2024-04).
   202 waves. Cross-chain $0.
   Mk4 VULNERABLE (same bug, fixed only in 5.6.0), but 0 additional recovered seeds.

@@ -20,13 +20,13 @@
   <!-- left: NET (top) + PERIMETER (bottom), both prominent with BTC -->
   <rect x="60" y="200" width="520" height="342" rx="18" fill="#0e1526" stroke="#24314e"/>
   <text x="88" y="244" fill="#8ea0c0" font-size="21" letter-spacing="1">NET STOLEN · actual loss</text>
-  <text x="84" y="314" fill="#ffffff" font-size="66" font-weight="800">~$399M</text>
+  <text x="84" y="314" fill="#ffffff" font-size="66" font-weight="800">~$406M</text>
   <text x="88" y="352" fill="#8ea0c0" font-size="26" font-weight="700">~5,080 BTC</text>
 
   <line x1="88" y1="374" x2="552" y2="374" stroke="#24314e" stroke-width="2"/>
 
   <text x="88" y="416" fill="#8ea0c0" font-size="21" letter-spacing="1">PERIMETER · volume through keys</text>
-  <text x="84" y="486" fill="url(#amber)" font-size="66" font-weight="800">~$861M</text>
+  <text x="84" y="486" fill="url(#amber)" font-size="66" font-weight="800">~$875M</text>
   <text x="88" y="524" fill="#ffffff" font-size="26" font-weight="700">10,950.75 BTC</text>
 
   <!-- right: stat grid -->
@@ -54,4 +54,5 @@
   <text x="60" y="588" fill="#ffcf7a" font-size="22" font-weight="700">⚠ 27+ months of quiet exploitation before public disclosure</text>
   <text x="60" y="622" fill="#6f7f9f" font-size="20">Fixed in firmware 4.2.0 / 5.6.0 · Independent research — not financial or legal advice</text>
   <text x="60" y="652" fill="#8ea0c0" font-size="21" font-weight="700">Independent on-chain security research</text>
+  <text x="1140" y="652" fill="#8ea0c0" font-size="18" text-anchor="end">USD @ BTC $79,902 · rate 06 Sep 2026</text>
 </svg>

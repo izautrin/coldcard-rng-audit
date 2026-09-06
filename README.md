@@ -10,14 +10,14 @@
 
 **Author:** Mikhail "MadMike" Martynyuk — independent crypto-security researcher.
 **Status:** Research writeup. Aggregate findings only. Sensitive data withheld (see *Responsible-disclosure notice*).
-**Report date:** 2026-08 · **BTC ref:** $78,619/BTC
+**Report date:** 2026-09-06 · **BTC ref:** $79,902/BTC (rate as of 2026-09-06)
 
 ---
 
 ## Scale at a glance
 
-> **Total volume that moved through the compromised keys: 10,950.75 BTC (≈$861M).**
-> Of that, **≈5,080 BTC (≈$399M) is the net actual loss** (external theft, after
+> **Total volume that moved through the compromised keys: 10,950.75 BTC (≈$875M).**
+> Of that, **≈5,080 BTC (≈$406M) is the net actual loss** (external theft, after
 > removing internal change-cycling). Both figures are reported for transparency —
 > gross = perimeter/scale, net = loss.
 
@@ -36,15 +36,15 @@ Independent on-chain analysis reconstructed the scope of the resulting theft.
 |---|---|
 | Recovered wallet seeds (independent brute-force ceiling) | **~2,052** |
 | Unique victim addresses identified | **35,189** (all drained) |
-| **Net stolen (actual loss, TX-graph)** | **~5,080 BTC ≈ $399M** |
-| Gross perimeter (funds that passed through compromised keys) | ~10,950 BTC ≈ $861M |
+| **Net stolen (actual loss, TX-graph)** | **~5,080 BTC ≈ $406M** |
+| Gross perimeter (funds that passed through compromised keys) | ~10,950 BTC ≈ $875M |
 | Vulnerability lifetime (first on-chain theft → latest) | **5+ years (Jul 2021 → Aug 2026)** |
 | Silent exploitation before public disclosure | **27+ months** |
 | Affected firmware | Mk3 4.0.1–4.1.9 · Mk4 5.0.0–5.5.1 |
 | Fixed in | **4.2.0 / 5.6.0** |
 
-> **Numbers, honestly:** *Net stolen (~$399M)* is the defensible actual-loss figure
-> from transaction-graph analysis. *Gross (~$861M)* is the total volume that moved
+> **Numbers, honestly:** *Net stolen (~$406M)* is the defensible actual-loss figure
+> from transaction-graph analysis. *Gross (~$875M)* is the total volume that moved
 > **through** compromised keys (it includes internal change-cycling and is **not**
 > the loss). Please cite Net as the headline.
 
