@@ -131,7 +131,7 @@ anything here.
 Responsible-disclosure contact for law-enforcement / forensic partners:
 
 - LinkedIn: https://www.linkedin.com/in/mikhail-martynyuk-b34723417/
-- X: @madmike_marginpath
+- X: @izautrin
 - Instagram: @madmike_marginpath
 - Telegram: @MadMike178
 - Email: izautrin@gmail.com
