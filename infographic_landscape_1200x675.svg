@@ -27,17 +27,17 @@
 
   <text x="88" y="416" fill="#8ea0c0" font-size="21" letter-spacing="1">PERIMETER · volume through keys</text>
   <text x="84" y="486" fill="url(#amber)" font-size="66" font-weight="800">~$861M</text>
-  <text x="88" y="524" fill="#ffffff" font-size="26" font-weight="700">10,949.73 BTC</text>
+  <text x="88" y="524" fill="#ffffff" font-size="26" font-weight="700">10,950.75 BTC</text>
 
   <!-- right: stat grid -->
   <g font-weight="800" fill="#ffffff">
     <rect x="610" y="200" width="530" height="100" rx="14" fill="#0e1526" stroke="#24314e"/>
-    <text x="636" y="260" font-size="48">2,051</text>
+    <text x="636" y="260" font-size="48">2,052</text>
     <text x="860" y="246" font-size="20" fill="#8ea0c0" font-weight="500">recoverable</text>
     <text x="860" y="274" font-size="20" fill="#8ea0c0" font-weight="500">wallet seeds</text>
 
     <rect x="610" y="314" width="530" height="100" rx="14" fill="#0e1526" stroke="#24314e"/>
-    <text x="636" y="374" font-size="48">35,188</text>
+    <text x="636" y="374" font-size="48">35,189</text>
     <text x="860" y="360" font-size="20" fill="#8ea0c0" font-weight="500">victim addresses</text>
     <text x="860" y="388" font-size="20" fill="#8ea0c0" font-weight="500">— all drained</text>
 

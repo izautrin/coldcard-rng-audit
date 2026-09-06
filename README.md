@@ -6,7 +6,7 @@
 > weakness in Coldcard hardware-wallet firmware, and an on-chain forensic
 > reconstruction of its impact (2021–2026).
 
-![Coldcard RNG vulnerability — scale of losses](images/infographic_landscape_1200x675.svg)
+![Coldcard RNG vulnerability — scale of losses](infographic_landscape_1200x675.svg)
 
 **Author:** Mikhail "MadMike" Martynyuk — independent crypto-security researcher.
 **Status:** Research writeup. Aggregate findings only. Sensitive data withheld (see *Responsible-disclosure notice*).
@@ -99,7 +99,7 @@ and blockchain-forensic partners on request.
   can flag the addresses.
 - `hub_map_tier1.csv` — consolidation-hub addresses (standard indicator-of-compromise
   data).
-- `posts/`, `images/` — disclosure materials.
+- `infographic_landscape_1200x675.svg` — summary infographic.
 
 ## Responsible-disclosure notice — what is **NOT** in this repo
 
