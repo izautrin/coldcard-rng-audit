@@ -16,8 +16,8 @@
 
 ## Scale at a glance
 
-> **Total volume that moved through the compromised keys: 10,950.75 BTC (~$861M).**
-> Of that, **~5,080 BTC (~$399M) is the net actual loss** (external theft, after
+> **Total volume that moved through the compromised keys: 10,950.75 BTC (≈$861M).**
+> Of that, **≈5,080 BTC (≈$399M) is the net actual loss** (external theft, after
 > removing internal change-cycling). Both figures are reported for transparency —
 > gross = perimeter/scale, net = loss.
 
