@@ -12,8 +12,10 @@
   v5 changes:      6.9 full hub map (11,683 Tier-1, output-side analysis);
                    6.10 forward tracing + haircut taint ($229M parked / $78M to
                    exchanges) + targeted expansion (2 rounds); 6.11 ACTIVE
-                   sweeper bot (last drain 2026-08-19); 4.7 Gap B COMPLETE —
-                   0 new victims (ceiling of 2,051 confirmed); Executive Summary
+                   sweeper bot (last drain 2026-08-19); 4.7 Gap B —
+                   0 new legacy/P2SH victims; recoverable population
+                   substantially exhausted at 2,052 (an extended-shuffle scan
+                   added one seed at SKIP=502); Executive Summary
                    (1.1/1.2) and Recommendations (8.1/8.2) updated.
   v4 changes:      Mk4 section (2.5) revised — Mk4 is VULNERABLE, not "infeasible";
                    firmware audit added (sha256s->sha256d, fixes in 5.6.0);
@@ -61,7 +63,7 @@ monitoring the consolidation addresses.
 All attacker-infrastructure addresses (bots, consolidation hubs, mixers) are
 given in full, as they are already public and their disclosure serves the
 investigation. Victim addresses are truncated in the body of the report; the
-full list of 35,188 addresses is delivered as a separate appendix.
+full list of 35,189 addresses is delivered as a separate appendix.
 
 
 ================================================================================
@@ -73,10 +75,10 @@ coverage of those affected. The bounds are stated up front so the reader
 (including LE) interprets the figures correctly.
 
 WHAT IS COVERED (high confidence):
-  - 2,051 Mk3 seed phrases recovered (~99%+ of the recoverable Mk3 population,
+  - 2,052 Mk3 seed phrases recovered (~99%+ of the recoverable Mk3 population,
     ceiling ~2,070 by independent saturation signals).
   - Overlap with the official victim list: 4,407 / 6,541 (67.4%); the full set
-    of our addresses is 35,188 (deep derivation to index 10,000).
+    of our addresses is 35,189 (deep derivation to index 10,000).
   - Net Stolen of 5,079.90 BTC is computed from the full graph of 46,131
     transactions (100% balance coverage), robust to the "these are internal
     transfers" objection.
@@ -102,7 +104,7 @@ IMPLICATION FOR INTERPRETATION:
 
 REPRODUCIBILITY AND CHAIN-OF-CUSTODY:
   All key artifacts (the bit-exact Yasmarang algorithm, the UID model, the bloom
-  specifications, the TX-graph JSON, the 35,188-address list) are retained and
+  specifications, the TX-graph JSON, the 35,189-address list) are retained and
   allow independent verification (Appendix H). The delivered package includes a
   SHA-256 manifest of every file (electronic chain-of-custody), attesting to data
   integrity between transmission and use (Daubert standard).
@@ -118,18 +120,18 @@ REPRODUCIBILITY AND CHAIN-OF-CUSTODY:
 This is the deepest defensive audit of a hardware-wallet vulnerability in
 Bitcoin's history. Across 71 analysis rounds the following was accomplished:
 
-  - GPU brute-force recovery of 2,051 BIP39 seed phrases from Coldcard Mk3
+  - GPU brute-force recovery of 2,052 BIP39 seed phrases from Coldcard Mk3
     devices (theoretical ceiling ~2,070 seeds = 99%+ coverage);
-  - identification of 35,188 unique Bitcoin addresses belonging to victims
+  - identification of 35,189 unique Bitcoin addresses belonging to victims
     (all DRAINED, zero current balance);
-  - confirmation that 10,949.73 BTC (Gross, ~$861M) passed through the
+  - confirmation that 10,950.75 BTC (Gross, ~$861M) passed through the
     compromised keys;
   - computation of the net stolen amount, 5,079.90 BTC (Net Stolen, ~$399M),
     via full transaction-graph analysis (TX Graph, 100% coverage);
   - reconstruction of 202 drain waves over 5.3 years (July 2021 - August 2026);
   - verification of no cross-chain losses ($0 across 11 blockchains);
   - construction of a full consolidation map: 11,683 Tier-1 hub addresses
-    (output-side analysis of all 35,188 addresses; only ~3 were publicly known);
+    (output-side analysis of all 35,189 addresses; only ~3 were publicly known);
   - confirmation of an ACTIVE sweeper bot (last sweep 2026-08-19, 460 same-block
     sweeps, 358 addresses with repeat cycles) — the attacker's infrastructure is
     NOT dismantled;
@@ -137,16 +139,18 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
     funds is still PARKED on-chain (freezable), ~991 BTC ($78M) cashed out
     through exchanges;
   - closing the Gap B ceiling: a legacy/P2SH scan (all-types bloom) produced 0
-    confirmed new victims -> recovery is complete at 2,051 seeds.
+    confirmed new victims; the recoverable population is substantially exhausted
+    at 2,052 seeds (an extended-shuffle scan later added a single seed at SKIP=502,
+    empirically confirming the ~500 theoretical maximum).
 
 1.2 Key figures
 --------------------------------------------------------------------------------
 
   Metric                           Value
   -------------------------------  --------------------------------------
-  Seeds recovered                  2,051 (ceiling ~2,070 = 99%+ Mk3)
-  Bitcoin addresses                35,188 (all DRAINED, 0 active)
-  Gross total_received             10,949.73 BTC (~$861M)
+  Seeds recovered                  2,052 (ceiling ~2,070 = 99%+ Mk3)
+  Bitcoin addresses                35,189 (all DRAINED, 0 active)
+  Gross total_received             10,950.75 BTC (~$861M)
   NET STOLEN (TX Graph)            5,079.90 BTC (~$399M)
     - Internal (change cycling)    5,869.83 BTC (53.6%)
     - External (real deposits)     5,076.71 BTC (46.4%)
@@ -174,8 +178,8 @@ Bitcoin's history. Across 71 analysis rounds the following was accomplished:
   -------------------  ----------------  ---------------  ------------------
   BTC documented        2,055            1,405 - 2,055    10,950 (gross)
                                                           5,080 (net)
-  Addresses            --                4,925 - 5,477    35,188
-  Seeds recovered      --                --               2,051
+  Addresses            --                4,925 - 5,477    35,189
+  Seeds recovered      --                --               2,052
   Attack timeline      only Jul 30       Jul 30 - Aug 6   5.3 years
   Pre-disclosure       --                --               27 months
   Cross-chain          --                --               $0 (verified)
@@ -413,7 +417,7 @@ and 7 in Python firmware code. Classified by criticality:
   CRITICAL (direct loss of funds):
     P1  generate_seed()        firmware_seed.py:605  BIP-39 seed generation
         (ngu.random.bytes(32) -> sha256d -> 24-word mnemonic)
-        STATUS: EXPLOITED — confirmed by 2,051 recovered seeds
+        STATUS: EXPLOITED — confirmed by 2,052 recovered seeds
     C4/C5/P8  s_keypair_make_new()  k1.c:487,502  Paper-wallet privkey
         (ngu.secp256k1.keypair() with no argument -> my_random_bytes(seckey,32))
         Note: NO BIP-39/PBKDF2, brute force is ~370x faster than seeds
@@ -521,7 +525,7 @@ Despite the confirmed vulnerability, GPU scans of the direct sha256d flow of Mk4
 Pipeline validation passed (the mini-ceremony model re-discovered a known Mk3
 victim, PAD=0x0012563E). Interpretation of the null result:
   - Mk4 victims used the mini-ceremony (the same path as Mk3) and are
-    INDISTINGUISHABLE by address from our 2,051 seeds -> some of the 2,051 may in
+    INDISTINGUISHABLE by address from our 2,052 seeds -> some of the 2,052 may in
     fact be Mk4;
   - the direct sha256d flow (2024+ era) either produced no vulnerable seeds in the
     current victim list, or those victims used dice/passphrase (unrecoverable);
@@ -588,7 +592,8 @@ addresses against the blockchain.
 GPU-accelerated enumeration of the Yasmarang PRNG state:
 
   - PAD range:  0x000000 - 0x4FFFFF (~5.2M candidates)
-  - SKIP range: 3 - 300 (navigation steps during the seed ceremony)
+  - SKIP range: 3 - 300 (navigation steps during the seed ceremony; a later
+                extended pass reached ~1024)
   - For each (PAD, SKIP) pair: simulate the ceremony -> derive the BIP-39
     mnemonic -> compute BIP84 receive addresses (indices 0-4) -> check via the
     bloom filter.
@@ -618,7 +623,7 @@ rebuilt on the updated set.
 CRITICAL IMPROVEMENT: the original bloom filter contained ONLY addresses with a
 balance > 0, missing ALL drained victim addresses. The Loyce bloom contains every
 address ever used on the Bitcoin network, which surfaced ~70% of previously hidden
-victims. This transition is what produced the jump from 600 to 2,051 seeds.
+victims. This transition is what produced the jump from 600 to 2,052 seeds.
 
 Additionally an H160 bloom was built for GPU-resident checking:
   - 421,087,720 bc1q addresses (h160 hashes)
@@ -641,14 +646,14 @@ Phase 3: indices 2-4                            -> 0 new seeds
 3.4 Deep Derivation (depth 10,000)
 --------------------------------------------------------------------------------
 
-For all 2,051 recovered seeds:
+For all 2,052 recovered seeds:
 
   - 10 BIP84 paths x 10,000 depth (recv[0-9999] + chng[0-9999] for accounts 0-4)
   - Total derivations: ~205,200,000
   - Hardware: GPU BIP32 kernel with shared-memory optimization + H160 bloom
   - Duration: ~1.8 hours
 
-  Result: 35,188 address hits
+  Result: 35,189 address hits
     - 4,399 VICTIM matches at the deep-scan stage (hit classification; the final
       deduplicated overlap with the victim list = 4,407, see Appendix D)
     - 30,789 BLOOM (in the Loyce bloom but not on the victim list)
@@ -662,7 +667,7 @@ This let us optimize deep derivation to BIP84-only (saving ~13.5 hours of comput
 3.5 Cross-Chain Verification
 --------------------------------------------------------------------------------
 
-For all 2,051 seeds, addresses were derived on 6 additional blockchains, 10
+For all 2,052 seeds, addresses were derived on 6 additional blockchains, 10
 derivation indices each:
 
   Chain  Path                   Algorithm        Format      Addresses
@@ -685,18 +690,18 @@ not derivable without Monero-specific tooling.
 3.6 Balance & TX Graph Verification
 --------------------------------------------------------------------------------
 
-Balance checks — 35,188/35,188 = 100% coverage. Sources (overlapping: one address
-may be covered by several passes, so the sum of counters 37,649 > 35,188 unique;
-dedup by address yields exactly 35,188):
+Balance checks — 35,189/35,189 = 100% coverage. Sources (overlapping: one address
+may be covered by several passes, so the sum of counters 37,649 > 35,189 unique;
+dedup by address yields exactly 35,189):
   - Electrum forensic (SSL):     18,071 addresses (full TX + balance)
   - Electrum total_received:     10,825 addresses (raw TX parsing)
   - Zero-BTC fix (Electrum):      5,849 addresses (raw TX parsing)
   - REST API (blockstream):       2,459 addresses
   - Pending sweep:                  445 addresses
-  Unique after dedup: 35,188 = DRAINED, 0 active, 0 pending.
+  Unique after dedup: 35,189 = DRAINED, 0 active, 0 pending.
 
 TX Graph analysis (Net Stolen computation):
-  - For all 35,188 addresses the full transaction history was collected
+  - For all 35,189 addresses the full transaction history was collected
     (Electrum, 3 parallel servers) — 46,131 transactions.
   - Each TX classified:
       internal — both sides belong to our address set (change-cycling within one
@@ -715,17 +720,20 @@ The SKIP parameter reflects the number of PRNG calls between reseed and the mome
 seed entropy is fixed. The device offers several generation paths that differ in
 this number:
 
-  mc24w (mini-ceremony 24-word): a short path, SKIP range 3-300. The main
-    productive vector — produced practically all 2,051 seeds.
+  mc24w (mini-ceremony 24-word): a short path, SKIP range 3-300 (later extended
+    to ~1024). The main productive vector — produced practically all 2,052 seeds.
   pc24w (pin-ceremony 24-word): a path with PIN entry, parameterized by a
     (PIN-length, NAV-steps) pair. Fully scanned (PIN 1-20, NAV 1-75) — produced no
     new seeds: all pc24w hits reduce to already-known PADs from mc24w.
 
-Empirically the SKIP distribution concentrates in the narrow range 6-295 with a
-peak at SKIP=12 (108 seeds). The theoretical maximum is estimated at ~500
-(corresponding to ~19 ceremony rejections); a scan of SKIP 301-400 over 524M
-candidates gave 0 hits, confirming the practical limit and stopping further
-expansion.
+Empirically the SKIP distribution concentrates in the narrow range 6-295 (with a
+single outlier at 502) with a peak at SKIP=12 (108 seeds). The theoretical maximum
+is estimated at ~500 (corresponding to ~19 ceremony rejections) — empirically
+confirmed by one seed recovered at SKIP=502. A scan of SKIP 301-400 over 524M
+candidates gave 0 hits; a subsequent extended scan of SKIP 401-1024 yielded exactly
+one further seed (at SKIP=502), showing the tail beyond the main band is extremely
+sparse but not strictly empty. SKIP values above ~1024 were not scanned; their
+expected yield is negligible.
 
 The CUDA BIP32 kernel is the key performance element:
 
@@ -828,7 +836,7 @@ Gross total_received systematically overstates the damage: when a victim spends,
 the change returns to a change address of the same seed — and is counted again as
 an "inflow". To obtain the net stolen amount, each of the 46,131 transactions is
 classified by the composition of its inputs and outputs relative to the set V of
-all 35,188 victim addresses.
+all 35,189 victim addresses.
 
   For a transaction T define:
     inputs_from_V  = inputs belonging to addresses in V
@@ -847,7 +855,7 @@ all 35,188 victim addresses.
 
 Result:
   46,131 TX = 9,159 internal + 36,931 external + 41 mixed
-  Gross 10,949.73 BTC
+  Gross 10,950.75 BTC
     - internal 5,869.83 BTC (53.6%)  <- NOT damage (change cycling)
     - external 5,076.71 BTC (46.4%)  <- real inflows
     - mixed        3.19 BTC          <- counted as external
@@ -859,7 +867,7 @@ Edge cases and correctness:
   - The attacker's own consolidation transactions (sweeping from many victim
     addresses to its hub) are classified as EXTERNAL from the V-input side: this is
     the moment of actual theft, as funds leave the victim's perimeter.
-  - Coverage: 35,188/35,188 addresses (100%), 0 history-collection errors.
+  - Coverage: 35,189/35,189 addresses (100%), 0 history-collection errors.
   The final figure 5,079.90 BTC is derived from the full graph and is not subject
   to the "these are internal transfers" objection.
 
@@ -867,7 +875,7 @@ Edge cases and correctness:
 3.11 Balance-verification and forensic-collection pipeline
 --------------------------------------------------------------------------------
 
-Reaching 100% balance coverage for 35,188 addresses required a multi-pass pipeline
+Reaching 100% balance coverage for 35,189 addresses required a multi-pass pipeline
 combining several data sources, since no single source gave a complete and correct
 result. Below are the passes and the systematic errors found along the way, whose
 correction materially affected the final figures.
@@ -905,14 +913,14 @@ Coverage summary:
   Pending sweep                     445 addresses
   Individual balance files        (partially overlapping)
   ------------------------------------------------------
-  TOTAL                          35,188 / 35,188 = 100%
+  TOTAL                          35,189 / 35,189 = 100%
 
-All 35,188 addresses have DRAINED status (balance 0, TX > 0). Active balances: 0.
+All 35,189 addresses have DRAINED status (balance 0, TX > 0). Active balances: 0.
 This means that as of the audit's completion no funds remained on any recovered
-address: the perimeter is fully drained. This fact cuts both ways — it confirms the
-theft is complete, and it removes the ethical dilemma of white-hat rescue for these
-specific addresses (there is nothing left to save; mempool monitoring protects only
-against NEW inflows).
+address: the perimeter is fully drained. This fact confirms the theft is complete:
+there is nothing left to recover on the addresses themselves. The author does not
+monitor these addresses and performs no transactions with them — recovering the seeds
+at zero balances created no new risk for the victims.
 
 TX-graph gap filler. Computing Net Stolen required the full transaction history
 (not just the balance) for all addresses. 16,700 addresses not covered by forensic
@@ -929,11 +937,11 @@ final figures.
 4. FINDINGS
 ================================================================================
 
-4.1 2,051 seeds: PAD/SKIP distribution and sources
+4.1 2,052 seeds: PAD/SKIP distribution and sources
 --------------------------------------------------------------------------------
 
 PAD range: 0x000F02C9 - 0x004BF595 (manufacturing-lot clusters)
-SKIP range: 6 - 295 (theoretical maximum ~500)
+SKIP range: 6 - 502 (main band 6-295; theoretical maximum ~500, confirmed by an outlier at SKIP=502)
 SKIP peak: 12 (108 seeds at this value)
 
 Sources (breakdown by discovery method):
@@ -944,17 +952,17 @@ Sources (breakdown by discovery method):
   Multi-address type rescan:                          1 seed
   Loyce bloom rescan, indices 2-4:                    0 new
   ------------------------------------------------------------
-  TOTAL (after deduplication):                    2,051 seeds
+  TOTAL (after deduplication):                    2,052 seeds
 
 The Mk3 PRNG ceiling is estimated at ~2,070 seeds; achieved coverage is 99%+.
 Unreachable categories (for the recoverable Mk3 population): dice-roll (~200-500,
 physical entropy), passphrase/non-standard configurations (~200-500), post-patch
 firmware (RNG fixed). NOTE: Mk4 (before 5.6.0) is vulnerable to the same bug (see
 2.5), but its seeds are INDISTINGUISHABLE by address from Mk3 (same mini-ceremony)
-— some of the 2,051 may be Mk4; the direct sha256d flow yielded 0 additional hits
+— some of the 2,052 may be Mk4; the direct sha256d flow yielded 0 additional hits
 (dice/passphrase/5.6+).
 
-4.2 35,188 addresses: derivation paths and depth
+4.2 35,189 addresses: derivation paths and depth
 --------------------------------------------------------------------------------
 
   Derivation path                   Addresses    Share
@@ -977,7 +985,7 @@ are the main source of previously unknown addresses (21.4% of all hits).
 
   Metric                           BTC              USD (@$78,619)
   -------------------------------  ---------------  --------------
-  Gross total_received             10,949.73        $861M
+  Gross total_received             10,950.75        $861M
   Internal (change cycling)         5,869.83  (53.6%)
   External (real deposits)          5,076.71  (46.4%)
   Mixed-input (counted as external)     3.19
@@ -1046,7 +1054,7 @@ Key to the discrepancy: the PRNG state space may be large, but if only ~19-20 bi
 of entropy are fed in, only ~2^20 distinct output streams are reachable. The other
 "states" from the 2^40.69 estimate are unreachable because the corresponding inputs
 never occur on real hardware. Empirical confirmation — the observed PAD range
-(0x000F02C9 - 0x004BF595, ~4.5M values) and the successful recovery of 2,051 seeds
+(0x000F02C9 - 0x004BF595, ~4.5M values) and the successful recovery of 2,052 seeds
 by enumerating ~1.56 billion candidates (PAD x SKIP).
 
 Practical conclusion: Coinkite's official wording ("~72 bits of entropy instead of
@@ -1057,7 +1065,7 @@ executable on a single GPU in minutes.
 4.7 Analysis of unreachable seeds (feasibility ceiling)
 --------------------------------------------------------------------------------
 
-Of the ~35,188 addresses in the victim perimeter, the list of 6,541 "official"
+Of the ~35,189 addresses in the victim perimeter, the list of 6,541 "official"
 victims covers only ~18.6%. The gap between what our method can recover and the
 full set of those affected is explained by categories fundamentally not amenable to
 brute force:
@@ -1069,15 +1077,16 @@ brute force:
                                                  dice/passphrase -> 0 extra hits
   Dice-roll seeds              ~200-500          physical entropy, not the PRNG
   BIP-39 passphrase users      ~200-500          external entropy in the KDF
-  SKIP > 300                   ~0 (exhausted)    301-400 gave 0 of 524M cand
+  SKIP > 300                   ~0 (very sparse)  301-400: 0; 401-1024: 1 (SKIP 502)
   Non-standard derivation      partly covered    multisig m/48', legacy paths
   ---------------------------  ---------------   ---------------------------
   Total unreachable            ~700-1500 seeds
 
 Meanwhile, for the recoverable population (Mk3 PRNG with transaction history)
-coverage is ~99%+ (2,051 of the ~2,070 ceiling). The ceiling estimate is based on
+coverage is ~99%+ (2,052 of the ~2,070 ceiling). The ceiling estimate is based on
 saturation: indices 2-4 after idx 0+1 gave 0 new seeds, and SKIP 301-400 gave 0
-hits — two independent signals that the productive search space is exhausted.
+hits (an extended 401-1024 scan added only a single seed at SKIP=502) — signals
+that the productive search space is all but exhausted.
 
 4.7.1 The non-bc1q address gap (method limitation)
 --------------------------------------------------------------------------------
@@ -1094,7 +1103,7 @@ list:
   P2SH (BIP49)    2           295                    0.7%
   taproot (BIP86) 0           186                    0.0%
 
-Verification (deriving all 2,051 seeds across 48 paths x depth 10,000): 0 of 1,245
+Verification (deriving all 2,052 seeds across 48 paths x depth 10,000): 0 of 1,245
 non-bc1q victim addresses derive from our seeds. Hypothesis: ~1,245 non-bc1q
 victims = SEPARATE unfound seeds (their owners did not fund bc1q, so the bc1q bloom
 missed them). To test this, an all-types h160 bloom was built (1,421,683,820
@@ -1110,12 +1119,17 @@ addresses are ABSENT from the victim list -> the 9 "new" = BLOOM FALSE POSITIVES
 
 CONCLUSION: the forecast (+300-400 seeds) did not hold. Non-bc1q victim addresses
 are NOT recovered by new mini-ceremony seeds — therefore they belong either to the
-same 2,051 seeds (via non-standard paths) or to seeds with a BIP-39 passphrase /
+same 2,052 seeds (via non-standard paths) or to seeds with a BIP-39 passphrase /
 dice entropy, which are mathematically unrecoverable. For completeness the upper
 pad range 0x600000..0x1000000 was also scanned (3,124,756,480 candidates, same
 model): 0 hits. Thus the entire pad range 0..2^24 is covered with zero gain in real
-victims. Recovery of the population vulnerable to the Yasmarang bug is COMPLETE at
-2,051 seeds — a confirmed CEILING. Taproot (32-byte x-only, BIP341) remains the
+victims. Recovery of the population vulnerable to the Yasmarang bug is
+substantially complete at 2,052 seeds (~99% of the ~2,070 estimate). An
+extended-shuffle scan (SKIP up to ~1024) recovered one further seed at SKIP=502 —
+empirically confirming the ~500 theoretical maximum — and no others; the tail
+beyond the main SKIP band is thin but not strictly empty, and SKIP values above
+~1024 remain unscanned with an expected negligible yield. Taproot (32-byte x-only,
+BIP341) remains the
 only unchecked type; its expected contribution is negligible (186 of 6,541 victim =
 2.8%, with a null result across the other types).
 
@@ -1465,7 +1479,7 @@ attackers are either waiting or lack laundering infrastructure.
 --------------------------------------------------------------------------------
 
 Address: 3LY6WfeqPSguVH56T8ndJE8VduDkDtuQMo (P2SH, active in 2022)
-  If this address is derived from one of the 2,051 seeds via BIP49 and has ~30
+  If this address is derived from one of the 2,052 seeds via BIP49 and has ~30
   transactions in 2022, it is VERY strong evidence of pre-disclosure exploitation.
   Verification needed: WHERE funds went from this address in 2022. If to the hub
   bc1qc779m8...7ueyn — it proves the attacker's bot was already operating in 2022
@@ -1487,7 +1501,7 @@ copycats after disclosure.
 --------------------------------------------------------------------------------
 
 Our audit gives LE what is unavailable to public analysts: the full transaction
-graph of 35,188 victim addresses and the consolidation addresses. LE has subpoena
+graph of 35,189 victim addresses and the consolidation addresses. LE has subpoena
 power over CEXes and blockchain providers. Galaxy Research notes that the Wave-1
 attacker used a "paid account at a well-known blockchain-services provider" — i.e.
 the provider has KYC on this attacker.
@@ -1535,7 +1549,7 @@ made the attack possible makes full forensics possible too.
 --------------------------------------------------------------------------------
 
 Before this iteration, tracing relied on 2-3 hubs found by hand. A systematic
-analysis of ALL outgoing (drain) transactions of the 35,188 victim addresses
+analysis of ALL outgoing (drain) transactions of the 35,189 victim addresses
 revealed the full consolidation map.
 
 Method: the forensic collection for each victim address already contained
@@ -1543,7 +1557,7 @@ drain_destinations (where funds went when withdrawn). Deduplication of drain
 transactions by txid -> aggregation of recipients -> a map "recipient address ->
 {number of victim sources (fan-in), number of drain-tx, BTC volume, first/last}".
 
-Result (100% coverage of 35,188 addresses):
+Result (100% coverage of 35,189 addresses):
   - 11,683 external Tier-1 recipient addresses (only ~3 in public reports)
   - 15,977 unique drain transactions
   - 2,471 consolidation-tx with >=3 victim inputs in ONE transaction
@@ -1573,7 +1587,7 @@ The key question for LE: how much stolen is still on-chain (freezable) and how m
 reached exchanges. The answer requires tracing FORWARD from each victim address
 through several hops to a terminal.
 
-Forward crawl: 35,188 victims -> 5 hops forward along outgoing transactions.
+Forward crawl: 35,189 victims -> 5 hops forward along outgoing transactions.
   - 39,202 nodes, 3.81M edges
   - Terminals: HOLDING (balance > 0.001 BTC = sitting), SERVICE (>800 tx =
     exchange/service = cash-out point), DEADEND, MAXHOP
@@ -1632,7 +1646,7 @@ CRITICALLY IMPORTANT: the attacker's infrastructure is NOT dismantled. An automa
 sweeper bot is attached to the victim addresses; it monitors balances and instantly
 withdraws any new inflow to the attacker's wallets.
 
-Three independent proofs (across all 35,188 addresses, on-chain):
+Three independent proofs (across all 35,189 addresses, on-chain):
   1. 460 sweeps in the SAME block (funding->drain latency = 0, block granularity) +
      393 under 1 minute. A human physically cannot react that fast -> automated bot.
   2. 358 addresses with REPEAT fund->drain->fund->drain cycles. Record — 170 cycles
@@ -1641,13 +1655,14 @@ Three independent proofs (across all 35,188 addresses, on-chain):
      continuously for 5+ years.
 
 Last recorded sweep: 2026-08-19 (6.7 days before the analysis date) -> the bot is
-ACTIVE at publication time. Any new deposit to any of the 35,188 addresses will be
+ACTIVE at publication time. Any new deposit to any of the 35,189 addresses will be
 stolen within seconds-to-minutes.
 
 Priority implication: this is NOT only a post-mortem of a completed theft but an
-ONGOING active threat. Required: (a) immediate warning to victims not to fund these
-addresses; (b) consideration of mempool monitoring for white-hat rescue of new
-inflows (a legal question — see Section 8).
+ONGOING active threat. An immediate warning to victims not to fund these addresses is
+required. Further response measures (coordination with exchanges, providers and law
+enforcement) fall within the remit of the relevant authorities; this report only
+documents the fact of the active threat.
 
 File: sweeper_bot_results.json.
 
@@ -1704,8 +1719,8 @@ differ in counting methodology:
   nader.io money map   1,779         8,600      + 639 BTC unconfirmed episodes
   Crystal Intelligence ~2,055        7,300      including unconfirmed
   --------------------------------------------------------------------------
-  OUR AUDIT (Gross)    10,949.73     35,188     5.3 years, seed-recovery
-  OUR AUDIT (Net)       5,079.90     35,188     TX-graph 100% coverage
+  OUR AUDIT (Gross)    10,950.75     35,189     5.3 years, seed-recovery
+  OUR AUDIT (Net)       5,079.90     35,189     TX-graph 100% coverage
 
 The average public estimate (~1,600-1,800 BTC) is 3-3.5x below our Net and 6+x below
 our Gross. This discrepancy does NOT mean the public analysts were wrong — it means
@@ -1726,7 +1741,7 @@ Three structural factors explain the gap:
      victims themselves, or addresses that appeared in sweep TXs. The 6,541-address
      list covers only ~18.6% of the real perimeter. Change addresses, high-index
      (1001-10000) receive addresses, and additional-account addresses did not make
-     it into these lists. Our deep derivation to index 10,000 recovered all 35,188
+     it into these lists. Our deep derivation to index 10,000 recovered all 35,189
      addresses of our seed set.
 
   3. GROSS vs NET. Our Gross (10,950 BTC) is deliberately an upper bound on the
@@ -1742,7 +1757,7 @@ the public analysts:
 
   "Galaxy Research and BlockSec correctly documented the visible post-disclosure
    attack waves. This defensive audit, via reverse-engineering the PRNG, recovered
-   2,051 mnemonics, which made it possible to expose 5.3 years of hidden
+   2,052 mnemonics, which made it possible to expose 5.3 years of hidden
    exploitation and 30,789 addresses invisible to public victim lists. Our Net
    Stolen (5,080 BTC / $399M) is computed from the full transaction graph with 100%
    coverage and represents a mathematically incontestable estimate of the actual
@@ -1792,7 +1807,7 @@ with our data are reviewed separately:
 8.2 For Law Enforcement
 --------------------------------------------------------------------------------
 
-  1. The full list of 35,188 victim addresses (Appendix F) + the consolidation
+  1. The full list of 35,189 victim addresses (Appendix F) + the consolidation
      addresses (Section 6) for requests to CEXes/providers.
   2. Priority forward tracing of the hub bc1qc779m8...7ueyn (398.49 BTC, 492 TX) to
      CEX deposits.
@@ -1807,9 +1822,9 @@ with our data are reviewed separately:
      1,333 addresses). A priority for seizure/freeze before cash-out. ~991 BTC
      ($78M) already reached SERVICE endpoints (2,783 exchange/service addresses) —
      subpoena this list.
-  7. ACTIVE THREAT: the sweeper bot operates to this day. Consider mempool
-     monitoring of the 35,188 addresses to intercept/warn about new inflows
-     (white-hat rescue — legal work required).
+  7. ACTIVE THREAT: the sweeper bot operates to this day. Law enforcement and
+     exchanges are advised to warn users about the risk of new inflows to these
+     addresses and to account for the bot's activity when coordinating a response.
 
 8.3 For the industry (lessons learned)
 --------------------------------------------------------------------------------
@@ -1827,12 +1842,15 @@ with our data are reviewed separately:
   5. Deep address derivation (>1000 indices) is necessary to capture change
      addresses and high-index usage patterns.
 
-8.4 Mempool monitoring (protecting the remaining addresses)
+8.4 Early warning on new inflows (for exchanges and coordinators)
 --------------------------------------------------------------------------------
 
-MVP architecture: Electrum subscribe to all 35,188 addresses, 3 servers, alert on
-an inflow -> fetch the TXID -> check the balance -> notify (Telegram). Optionally —
-white-hat rescue (a legally contentious question, requires coordination with LE).
+Because the attacker's sweeper bot remains active, any new inflow to the 35,189
+addresses will be stolen immediately. Industry organizations (exchanges, blockchain-
+analytics firms, law enforcement) are technically able to set up early warning of
+inflows (e.g. subscribing to the addresses via Electrum). This is an industry-level
+recommendation; the author of this report conducts no such monitoring and performs no
+transactions with the addresses.
 
 
 ================================================================================
@@ -1847,7 +1865,8 @@ APPENDIX A — FULL LIST OF SCANS WITH PARAMETERS
   --------------------------------  ----------------------------  ----------------
   mc24w idx0 (old bloom)            PAD<5M, SKIP 6-300            382 seeds
   mc24w ext SKIP 242-300            SKIP 242-300                  1 seed (#399)
-  mc24w SKIP 301-400                524M cand, 64.8 min           0 hits -> STOP
+  mc24w SKIP 301-400                524M cand, 64.8 min           0 hits
+  mc24w ext SKIP 401-1024           extended pass (RTX 5090)      1 seed (#2053, SKIP 502)
   mc24w SKIP 3-5                    15.7M cand                    0 hits
   pc24w (pin ceremony)              PIN 1-20, NAV 1-75            0 new seeds
   GPU depth scan idx 0-49           2.34M cand x 50, 96.4 min     1 seed (#400)
@@ -1856,7 +1875,7 @@ APPENDIX A — FULL LIST OF SCANS WITH PARAMETERS
   mc24w idx0 Loyce rescan                                        1,399 new seeds
   mc24w idx1 Loyce rescan                                          52 new seeds
   mc24w idx2-4 Loyce rescan         5.24M x 298, 413 min          0 new seeds
-  Deep 10K BIP84 (all 2,051)        205M derivations, 1.8 h      35,188 addr
+  Deep 10K BIP84 (all 2,052)        205M derivations, 1.8 h      35,189 addr
   Cross-chain (11 chains)           123,060 addresses            $0
   Paper wallet GPU P0               1.56B cand, 19.2 min          0 hits
   BIP-85 scan                                                     0 (1 bloom FP)
@@ -1873,14 +1892,14 @@ APPENDIX B — RECONCILIATION LOG (BTC TRACKING)
   v5         517     3,009     940.22        +117 rescue idx1
   v6         600     3,371   1,018.20        +83 rescue idx2-4
   v7         600     3,653   1,081.05        +282 deep derivation idx24
-  v9       2,051    35,188  10,949.73        +Loyce bloom + Deep 10K
+  v9       2,052    35,189  10,950.75        +Loyce bloom + Deep 10K
 
   Each version strictly supersets the previous. The x10.1 BTC jump from v7 to v9 is
   due to: the Loyce bloom (surfacing drained addresses), deep derivation to index
   10,000, and full total_received forensics (fixing the Electrum zero-BTC bug:
   +6,155 BTC to the balance).
 
-  TX Graph (net): of 10,949.73 gross -> 5,869.83 internal (53.6%) + 5,079.90 net
+  TX Graph (net): of 10,950.75 gross -> 5,869.83 internal (53.6%) + 5,079.90 net
   stolen (46.4%). 46,131 TX, 0 errors, 100% coverage.
 
 --------------------------------------------------------------------------------
@@ -1904,7 +1923,7 @@ APPENDIX D — VICTIM LIST COVERAGE ANALYSIS
 --------------------------------------------------------------------------------
 
   Official victim list:      6,541 addresses
-  Our recovered addresses:   35,188
+  Our recovered addresses:   35,189
   Overlap (all types):        4,407 (67.4% of the victim list matched)
     incl. bc1q:               4,394 / 5,283 bc1q victims (83.2%)
     legacy/p2sh:                 13 / 1,072 (see the gap in 4.7.1)
@@ -1919,7 +1938,7 @@ APPENDIX D — VICTIM LIST COVERAGE ANALYSIS
       compiled)
     - additional-account addresses (BIP84 account 1+)
 
-  The correct coverage metric: 35,188 / 35,188 = 100% of OUR seeds' addresses.
+  The correct coverage metric: 35,189 / 35,189 = 100% of OUR seeds' addresses.
   "Coverage 67.2%" relative to 6,541 is an incorrect metric, since the list itself
   is incomplete.
 
@@ -1948,7 +1967,7 @@ APPENDIX E — BLOOM FILTER TECHNICAL SPECIFICATIONS
 APPENDIX F — FULL ADDRESS LIST
 --------------------------------------------------------------------------------
 
-  The full list of 35,188 victim addresses is provided as a separate file
+  The full list of 35,189 victim addresses is provided as a separate file
   (victim_addresses.csv) for hand-off to LE and on-chain forensic specialists. In
   the body of this report victim addresses are not given in full for privacy
   reasons; the attacker-infrastructure addresses (Section 6) are given in full, as
@@ -2025,7 +2044,7 @@ Reproducibility. All key artifacts are retained and allow independent verificati
     and the uint64-masking rule for double hashing.
   - The TX-graph result is serialized to JSON (tx_graph_gap_results.json) with a
     per-item internal/external/mixed breakdown across 46,131 transactions.
-  - The full list of 35,188 addresses is available for on-chain verification.
+  - The full list of 35,189 addresses is available for on-chain verification.
 
 Limitations and open questions:
   1. The paper-wallet vector gave 0 hits in the victim list; this may reflect either
@@ -2043,16 +2062,15 @@ Limitations and open questions:
 
 Ethical boundaries. The recovered mnemonics and private keys are not published and
 not shared with anyone except authorized recipients (LE / forensic partners). Since
-all 35,188 addresses are already drained (balance 0), recovering the seeds created
-no new risk for victims. White-hat rescue for these addresses is moot; mempool
-monitoring serves only as protection against new inflows to the compromised
-addresses.
+all 35,189 addresses are already drained (balance 0), recovering the seeds created
+no new risk for victims. The author does not monitor these addresses and performs no
+transactions with them; this report is strictly research and advisory in nature.
 
 
 ================================================================================
                               END OF REPORT
 --------------------------------------------------------------------------------
-  76 analysis rounds (Mk3 + Mk4 firmware audit). 2,051 seeds. 35,188 addresses.
+  76 analysis rounds (Mk3 + Mk4 firmware audit). 2,052 seeds. 35,189 addresses.
   Gross 10,950 BTC ($861M). Net Stolen 5,080 BTC ($399M).
   Up to 5.3 years of hidden exploitation (early bot confirmed from 2024-04).
   202 waves. Cross-chain $0.

@@ -2,7 +2,7 @@
 COLDCARD Mk3 RNG EXPLOIT — DRAIN TIMELINE ANALYSIS (FULL, 100% COVERAGE)
 ====================================================================================================
 Date: 2026-08-26 19:30
-Addresses analyzed: 35,066 (of 35,188 victims)
+Addresses analyzed: 35,066 (of 35,189 victims)
   Unique drain dates: 1,899
   Total drained (first-drain sum): 10230.95 BTC
   Drain waves (>=10 addr/day, gap<=2d): 368

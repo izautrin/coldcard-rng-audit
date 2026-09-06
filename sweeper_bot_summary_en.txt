@@ -6,7 +6,7 @@ The attacker's infrastructure is NOT dismantled. An automated sweeper bot is
 attached to the victim addresses: it monitors balances and instantly withdraws
 any new inflow to the attacker's wallets.
 
-THREE INDEPENDENT PROOFS (across all 35,188 addresses, on-chain):
+THREE INDEPENDENT PROOFS (across all 35,189 addresses, on-chain):
 
   1. Sweeps in the SAME block (latency=0): 460
      + under 1 min: 470, under 10 min: 257, under 1 hour: 1262
@@ -21,5 +21,8 @@ THREE INDEPENDENT PROOFS (across all 35,188 addresses, on-chain):
   Total fund->drain pairs: 35569
   Active collection wallets: 11683
 
-IMPLICATION: any new deposit to any of the 35,188 addresses will be stolen
-within seconds-to-minutes. Warn the victims. Consider mempool monitoring.
+IMPLICATION: any new deposit to any of the 35,189 addresses will be stolen
+within seconds-to-minutes. Victims must be warned not to fund these addresses.
+Early warning on inflows is a task for exchanges and the relevant authorities;
+the report's author conducts no monitoring of the addresses and performs no
+transactions with them.

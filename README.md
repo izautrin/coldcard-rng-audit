@@ -8,7 +8,7 @@
 
 ![Coldcard RNG vulnerability — scale of losses](images/infographic_landscape_1200x675.svg)
 
-**Author:** Independent security researcher.
+**Author:** Mikhail "MadMike" Martynyuk — independent crypto-security researcher.
 **Status:** Research writeup. Aggregate findings only. Sensitive data withheld (see *Responsible-disclosure notice*).
 **Report date:** 2026-08 · **BTC ref:** $78,619/BTC
 
@@ -16,7 +16,7 @@
 
 ## Scale at a glance
 
-> **Total volume that moved through the compromised keys: 10,949.73 BTC (~$861M).**
+> **Total volume that moved through the compromised keys: 10,950.75 BTC (~$861M).**
 > Of that, **~5,080 BTC (~$399M) is the net actual loss** (external theft, after
 > removing internal change-cycling). Both figures are reported for transparency —
 > gross = perimeter/scale, net = loss.
@@ -34,8 +34,8 @@ Independent on-chain analysis reconstructed the scope of the resulting theft.
 
 | Metric | Value |
 |---|---|
-| Recovered wallet seeds (independent brute-force ceiling) | **~2,051** |
-| Unique victim addresses identified | **35,188** (all drained) |
+| Recovered wallet seeds (independent brute-force ceiling) | **~2,052** |
+| Unique victim addresses identified | **35,189** (all drained) |
 | **Net stolen (actual loss, TX-graph)** | **~5,080 BTC ≈ $399M** |
 | Gross perimeter (funds that passed through compromised keys) | ~10,950 BTC ≈ $861M |
 | Vulnerability lifetime (first on-chain theft → latest) | **5+ years (Jul 2021 → Aug 2026)** |
@@ -92,7 +92,7 @@ and blockchain-forensic partners on request.
 ## What's in this repo
 
 - `investigation_report_en.txt` (EN) / `investigation_report_ru.txt` (RU) — the technical writeup (redacted public edition).
-- `victim_addresses.csv` — the 35,188 affected addresses, as scope/IOC evidence.
+- `victim_addresses.csv` — the 35,189 affected addresses, as scope/IOC evidence.
   These are **already public on-chain and all drained (balance 0)**; the list adds
   no attack capability (the affected addresses are empty) and contains **no identity
   linkage** — it exists so the scale can be independently verified and so exchanges
@@ -127,8 +127,16 @@ anything here.
 
 ## Contact
 
-Responsible-disclosure contact for law-enforcement / forensic partners is available
-via this repository's issues or the maintainer profile.
+**Mikhail "MadMike" Martynyuk** — independent crypto-security researcher.
+Responsible-disclosure contact for law-enforcement / forensic partners:
+
+- LinkedIn: https://www.linkedin.com/in/mikhail-martynyuk-b34723417/
+- X: @madmike_marginpath
+- Instagram: @madmike_marginpath
+- Telegram: @MadMike178
+- Email: izautrin@gmail.com
+
+You can also open an issue in this repository.
 
 ---
 
