@@ -129,7 +129,7 @@ Research, BlockSec). Настоящий репозиторий — **незав�
 Контакт для ответственного раскрытия правоохранительным / форензик-партнёрам:
 
 - LinkedIn: https://www.linkedin.com/in/mikhail-martynyuk-b34723417/
-- X: @izautrin
+- X: @CryptoMadMike
 - Instagram: @madmike_marginpath
 - Telegram: @MadMike178
 - Email: izautrin@gmail.com
